@@ -105,10 +105,10 @@ void Adafruit_BME280::write8(byte reg, byte value)
   } else {
     if (_sck == -1) {
       SPI1.begin();
-      SPI1.setClockDivider(SPI1_CLOCK_DIV64);
+      SPI1.setClockDivider(SPI_CLOCK_DIV64);
       SPI1.setBitOrder(MSBFIRST);
-      SPI1.setDataMode(SPI1_MODE0);
-      //SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI1_MODE0));
+      SPI1.setDataMode(SPI_MODE0);
+      //SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI_MODE0));
     }
     digitalWrite(_cs, LOW);
     spixfer(reg & ~0x80); // write, bit 7 low
@@ -140,10 +140,10 @@ uint8_t Adafruit_BME280::read8(byte reg)
   } else {
     if (_sck == -1) {
       SPI1.begin();
-      SPI1.setClockDivider(SPI1_CLOCK_DIV64);
+      SPI1.setClockDivider(SPI_CLOCK_DIV64);
       SPI1.setBitOrder(MSBFIRST);
-      SPI1.setDataMode(SPI1_MODE0);
-      // SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI1_MODE0));
+      SPI1.setDataMode(SPI_MODE0);
+      // SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI_MODE0));
     }
     digitalWrite(_cs, LOW);
     spixfer(reg | 0x80); // read, bit 7 high
@@ -176,10 +176,10 @@ uint16_t Adafruit_BME280::read16(byte reg)
   } else {
     if (_sck == -1) {
       SPI1.begin();
-      SPI1.setClockDivider(SPI1_CLOCK_DIV64);
+      SPI1.setClockDivider(SPI_CLOCK_DIV64);
       SPI1.setBitOrder(MSBFIRST);
-      SPI1.setDataMode(SPI1_MODE0);
-      // SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI1_MODE0));
+      SPI1.setDataMode(SPI_MODE0);
+      // SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI_MODE0));
     }
     digitalWrite(_cs, LOW);
     spixfer(reg | 0x80); // read, bit 7 high
@@ -243,7 +243,7 @@ uint32_t Adafruit_BME280::read24(byte reg)
     Wire.endTransmission();
   } else {
     if (_sck == -1)
-      SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI1_MODE0));
+      SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI_MODE0));
     digitalWrite(_cs, LOW);
     spixfer(reg | 0x80); // read, bit 7 high
 
