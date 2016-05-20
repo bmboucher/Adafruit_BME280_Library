@@ -20,8 +20,6 @@
 #ifndef __BME280_H__
 #define __BME280_H__
 
-#include "application.h"
-
 #include "Adafruit_Sensor.h"
 
 /*=========================================================================
