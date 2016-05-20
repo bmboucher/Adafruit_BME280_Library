@@ -242,8 +242,12 @@ uint32_t Adafruit_BME280::read24(byte reg)
     
     Wire.endTransmission();
   } else {
-    if (_sck == -1)
-      SPI1.beginTransaction(SPISettings(500000, MSBFIRST, SPI_MODE0));
+    if (_sck == -1) {
+      SPI1.begin();
+      SPI1.setClockDivider(SPI_CLOCK_DIV64);
+      SPI1.setBitOrder(MSBFIRST);
+      SPI1.setDataMode(SPI_MODE0);
+    }
     digitalWrite(_cs, LOW);
     spixfer(reg | 0x80); // read, bit 7 high
 
@@ -255,7 +259,7 @@ uint32_t Adafruit_BME280::read24(byte reg)
 
     digitalWrite(_cs, HIGH);
     if (_sck == -1)
-      SPI1.endTransaction();              // release the SPI1 bus
+      SPI1.end();              // release the SPI1 bus
   }
 
   return value;
