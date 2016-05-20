@@ -18,7 +18,7 @@
   in order to work with Particle Photon & Core.
  ***************************************************************************/
 #include "math.h"
-#include "Adafruit_BME280.h"
+#include "Adafruit_BME280_SecondSPI.h"
 
 
 /***************************************************************************
